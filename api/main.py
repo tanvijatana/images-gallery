@@ -2,6 +2,7 @@ from logging import DEBUG
 import requests, os
 from flask import Flask, request
 from dotenv import load_dotenv
+from flask_cors import CORS
 
 load_dotenv(dotenv_path="./.env.local")
 
@@ -14,7 +15,7 @@ if not UNSPLASH_KEY:
   raise EnvironmentError("Please insert .env.local file and insert there UNSPLASH_kEY")
 
 app = Flask(__name__)
-
+CORS(app)
 app.config["DEBUG"] = DEBUG
 
 @app.route("/new-image")
